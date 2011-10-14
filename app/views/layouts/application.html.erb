@@ -2,11 +2,23 @@
 <html>
 <head>
   <title>Flang</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if logged_in? %>
+	<p>Logged in as <strong><%= current_user.screen_name %></strong>. (<%= link_to "Sign Out", sign_out_path %>)</p>
+<% else %>
+	<p><%= link_to "Sign In", sign_in_path %></p>
+<% end %>
+
+<% flash.each do |type, message| %>
+	<div class="flash <%= type %>">
+		<%= message %>
+	</div>
+<% end %>
 
 <%= yield %>
 

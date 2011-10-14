@@ -1,2 +1,7 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+Flang is a web application for managing a Wheaties instance.
+
+== Installation
+
+Flang requires an ExpressionEngine MySQL database with which to authenticate. For development and test environments, a database with `exp_members` and `exp_sessions` tables will suffice.
+
+Database connections are configured using environment variables, such as `FLANG_MYSQL_DEVELOPMENT_DATABASE`. In your local development environment, you may use a shell script such as `.powenv` to set up the shell environment. See `config/database.yml` for the names of environment variables used.

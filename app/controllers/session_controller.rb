@@ -15,6 +15,6 @@ class SessionController < ApplicationController
   def destroy
     session[:user] = nil
     cookies.delete(:exp_sessionid)
-    render "session/new"
+    redirect_to root_path
   end
 end

@@ -3,27 +3,12 @@ defaults: &defaults
   encoding: utf8
   reconnect: false
   pool: 5
+  host: <%= ENV["FLANG_MYSQL_HOST"] || "127.0.0.1" %>
+  port: <%= ENV["FLANG_MYSQL_PORT"] || 3306 %>
+  username: <%= ENV["FLANG_MYSQL_USERNAME"] || "root" %>
+  password: <%= ENV["FLANG_MYSQL_PASSWORD"] || "root" %>
+  database: <%= ENV["FLANG_MYSQL_DATABASE"] || "flang_#{Rails.env}" %>
 
-development:
-  database: "<%= ENV['FLANG_MYSQL_DEVELOPMENT_DATABASE'] %>"
-  username: "<%= ENV['FLANG_MYSQL_DEVELOPMENT_USERNAME'] %>"
-  password: "<%= ENV['FLANG_MYSQL_DEVELOPMENT_PASSWORD'] %>"
-  host: "<%= ENV['FLANG_MYSQL_DEVELOPMENT_HOST'] %>"
-  port: <%= ENV['FLANG_MYSQL_DEVELOPMENT_PORT'] %>
-  <<: *defaults
-
-test:
-  database: "<%= ENV['FLANG_MYSQL_TEST_DATABASE'] %>"
-  username: "<%= ENV['FLANG_MYSQL_TEST_USERNAME'] %>"
-  password: "<%= ENV['FLANG_MYSQL_TEST_PASSWORD'] %>"
-  host: "<%= ENV['FLANG_MYSQL_TEST_HOST'] %>"
-  port: <%= ENV['FLANG_MYSQL_TEST_PORT'] %>
-  <<: *defaults
-
-production:
-  database: "<%= ENV['FLANG_MYSQL_DATABASE'] %>"
-  username: "<%= ENV['FLANG_MYSQL_USERNAME'] %>"
-  password: "<%= ENV['FLANG_MYSQL_PASSWORD'] %>"
-  host: "<%= ENV['FLANG_MYSQL_HOST'] %>"
-  port: <%= ENV['FLANG_MYSQL_PORT'] || 3306 %>
-  <<: *defaults
+development: *defaults
+test: *defaults
+production: *defaults

@@ -13,3 +13,7 @@ When deploying to Heroku, use the `DATABASE_URL` environment variable to connect
     $ heroku config:add DATABASE_URL=mysql2://username:password@host/database
 
 Heroku will rewrite `database.yml` to utilize your `DATABASE_URL` credentials.
+
+=== MongoDB
+
+Flang requires a MongoDB database to store data. Like the ExpressionEngine database, Flang's connection is configured using environment variables. See `config/mongo.yml` for the names of environment variables used.

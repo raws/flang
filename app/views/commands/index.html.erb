@@ -1,0 +1,8 @@
+<h1>Commands#index</h1>
+<p><%= link_to "New Command", new_command_path %></p>
+
+<ol id="commands">
+	<% @commands.each do |command| %>
+		<li><%= link_to command.name, command_path(command) %></li>
+	<% end %>
+</ol>

@@ -1,0 +1,13 @@
+<% if @command.errors.present? %>
+	<ul id="errors">
+		<% @command.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @command do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+<% end %>

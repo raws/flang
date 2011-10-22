@@ -23,4 +23,11 @@ class ApplicationController < ActionController::Base
         end
       end
     end
+    
+    def require_authenticated
+      unless logged_in?
+        flash[:alert] = "Please log in to do that!"
+        redirect_to sign_in_path
+      end
+    end
 end

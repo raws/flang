@@ -31,4 +31,11 @@ class ApplicationController < ActionController::Base
         redirect_to sign_in_path
       end
     end
+    
+    def require_unauthenticated
+      unless logged_out?
+        flash[:alert] = "You are already logged in."
+        redirect_to root_path
+      end
+    end
 end

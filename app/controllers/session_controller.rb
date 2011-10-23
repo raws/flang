@@ -1,4 +1,6 @@
 class SessionController < ApplicationController
+  before_filter :require_unauthenticated, :only => [:new, :create]
+  
   def new
   end
 

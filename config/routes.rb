@@ -1,5 +1,5 @@
 Flang::Application.routes.draw do
-  root :to => "session#new"
+  root :to => "commands#index"
   
   get "sign_in" => "session#new"
   post "sign_in" => "session#create"

@@ -7,7 +7,11 @@ class SessionController < ApplicationController
   def create
     if member_id = User.authenticate(params[:username], params[:password])
       session[:user] = member_id
-      redirect_to root_path
+      if session[:history] && session[:history].length >= 3
+        redirect_to session[:history][2]
+      else
+        redirect_to root_path
+      end
     else
       flash[:alert] = "Invalid credentials."
       redirect_to sign_in_path

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?, :logged_out?
+  before_filter :add_to_session_history
   before_filter :check_for_session_cookie
   
   def current_user
@@ -16,6 +17,12 @@ class ApplicationController < ActionController::Base
   end
   
   private
+    def add_to_session_history
+      session[:history] ||= []
+      session[:history].unshift(request.path)
+      session[:history].pop if session[:history].size > 3
+    end
+    
     def check_for_session_cookie
       return if logged_in?
       if session_id = cookies[:exp_sessionid]

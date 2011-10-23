@@ -40,5 +40,12 @@ class CommandsController < ApplicationController
   end
   
   def destroy
+    if @command = Command.find_by_id(params[:id])
+      @command.destroy
+      flash[:notice] = "Command deleted."
+      redirect_to commands_path
+    else
+      redirect_to commands_path
+    end
   end
 end

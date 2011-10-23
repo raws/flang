@@ -1,3 +1,3 @@
 <h1><%= @command.name %></h1>
 <p>Created by <%= @command.user.screen_name %> on <%= @command.created_at %></p>
-<p><%= link_to "Edit", edit_command_path(@command) %>
+<p><%= link_to "Edit", edit_command_path(@command) %> <%= link_to "Delete", @command, :method => :delete, :confirm => "Are you sure?" %></p>

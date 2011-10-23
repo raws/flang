@@ -27,14 +27,14 @@ class ApplicationController < ActionController::Base
     
     def require_authenticated
       unless logged_in?
-        flash[:alert] = "Please log in to do that!"
+        flash[:alert] = "Please sign in to do that!"
         redirect_to sign_in_path
       end
     end
     
     def require_unauthenticated
       unless logged_out?
-        flash[:alert] = "You are already logged in."
+        flash[:alert] = "You are already signed in."
         redirect_to root_path
       end
     end

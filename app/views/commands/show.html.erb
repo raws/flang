@@ -1,3 +1,7 @@
 <h1><%= @command.name %></h1>
-<p>Created by <%= @command.user.screen_name %> on <%= @command.created_at %></p>
+<p>Created by <%= @command.creator.screen_name %> on <%= @command.created_at %></p>
+<% if @command.updated? %>
+	<p>Updated by <%= @command.updater.screen_name %> on <%= @command.updated_at %></p>
+<% end %>
+<pre><code><%= @command.body %></code></pre>
 <p><%= link_to "Edit", edit_command_path(@command) %> <%= link_to "Delete", @command, :method => :delete, :confirm => "Are you sure?" %></p>

@@ -11,7 +11,7 @@ class CommandsController < ApplicationController
   
   def create
     @command = Command.new(params[:command])
-    @command.user_id = current_user.member_id
+    @command.creator_id = current_user.member_id
     if @command.save
       redirect_to @command
     else
@@ -29,6 +29,7 @@ class CommandsController < ApplicationController
   
   def update
     if @command = Command.find_by_id(params[:id])
+      @command.updater_id = current_user.member_id
       if @command.update_attributes(params[:command])
         redirect_to @command
       else

@@ -7,7 +7,7 @@
 <% end %>
 
 <%= form_for @command do |f| %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.submit %>
+	<div><%= f.label :name %> <%= f.text_field :name %></div>
+	<div><%= f.label :body %> <%= f.text_area :body %></div>
+	<div><%= f.submit %></div>
 <% end %>

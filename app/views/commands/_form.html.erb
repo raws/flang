@@ -8,6 +8,7 @@
 
 <%= form_for @command do |f| %>
 	<div><%= f.label :name %> <%= f.text_field :name %></div>
-	<div><%= f.label :body %> <%= f.text_area :body %></div>
+	<div id="command_editor"><%= @command.body %></div>
+	<%= f.text_area :body %>
 	<div><%= f.submit %></div>
 <% end %>

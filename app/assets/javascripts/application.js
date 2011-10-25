@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ace
+//= require mode-ruby.js
 //= require_tree .

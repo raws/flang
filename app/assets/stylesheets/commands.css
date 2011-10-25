@@ -1,0 +1,11 @@
+#command_body {
+	display: none;
+}
+
+#command_editor {
+	width: 100%;
+	height: 500px;
+	position: relative;
+	font-family: Menlo, DejaVuSansMono, Monaco, monospace;
+	line-height: 1.4em;
+}

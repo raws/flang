@@ -44,5 +44,8 @@ module Flang
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Don't initialize all of Rails during asset compilation
+    config.assets.initialize_on_precompile = false
   end
 end

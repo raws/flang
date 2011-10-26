@@ -1,17 +1,41 @@
-defaults: &defaults
-  host: <%= ENV["FLANG_MONGO_HOST"] || "127.0.0.1" %>
-  port: <%= ENV["FLANG_MONGO_PORT"] || 27017 %>
+<%
+def process_mongo_database_uri(uri)
+  if uri =~ %r{^mongodb://(?:([^:]*?)(?:\:(\S*?))?@)?([^:]*?)(?:\:(\d+))?/(\S+)$}i
+    mongo = { :host => $~[3], :port => ($~[4] || 27017).to_i, :database => $~[5] }
+    mongo[:username] = $~[1] if $~[1]
+    mongo[:password] = $~[2] if $~[2]
+    mongo
+  else
+    raise ArgumentError, "Invalid MongoDB URI (#{uri.inspect})"
+  end
+end
+%>
 
-development:  
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
+
+development:
   <<: *defaults
   database: flang_development
 
-test:  
+test:
   <<: *defaults
   database: flang_test
 
-production:  
-  <<: *defaults
-  database: <%= ENV["FLANG_MONGO_DATABASE"] || "flang" %>
-  username: <%= ENV["FLANG_MONGO_USERNAME"] %>
-  password: <%= ENV["FLANG_MONGO_PASSWORD"] %>
+<%
+if Rails.env.to_s == "production"
+  raise "Missing MONGODB_URI" unless ENV["MONGODB_URI"]
+  production = process_mongo_database_uri(ENV["MONGODB_URI"])
+%>
+production:
+  host: <%= production[:host] %>
+  port: <%= production[:port] %>
+  <% if production[:username] %>
+  username: <%= production[:username] %>
+  <% end %>
+  <% if production[:password] %>
+  password: <%= production[:password] %>
+  <% end %>
+  database: <%= production[:database] %>
+<% end %>

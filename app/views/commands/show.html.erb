@@ -1,7 +1,7 @@
 <h1><%= @command.name %></h1>
-<p>Created by <%= @command.creator.screen_name %> on <%= @command.created_at %></p>
+<p>Created by <%= @command.creator.screen_name %> <%= time_ago_in_words_with_hint(@command.created_at) %> ago</p>
 <% if @command.updated? %>
-	<p>Updated by <%= @command.updater.screen_name %> on <%= @command.updated_at %></p>
+	<p>Updated by <%= @command.updater.screen_name %> <%= time_ago_in_words_with_hint(@command.updated_at) %> ago</p>
 <% end %>
 <div id="command_editor" class="read_only"><%= @command.body %></div>
 <p><%= link_to "Edit", edit_command_path(@command) %> <%= link_to "Delete", @command, :method => :delete, :confirm => "Are you sure?" %></p>
